@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // import cookies from 'js-cookie';
+import cookies from "js-cookie";
+
 import axios, { AxiosError } from "axios";
 import { BASEURL } from "../App";
 
@@ -32,6 +34,7 @@ const Signup = (props) => {
   
   const handleSubmit = (event) => {
     event.preventDefault();
+    const token = cookies.get("token");
     // Validation
     if (formData.password !== formData.confirmPassword) {
       setError("Passwords do not match .");
@@ -44,10 +47,11 @@ const Signup = (props) => {
   //   console.log('first axios');
   //   axios({
   //     method: 'get',
-  //     url: `${BASEURL}/assigned-courses/students
+  //     url: `${BASEURL}/assigned-courses
   //     `,
   //     headers: {
   //         'Content-Type': 'application/json',
+  //         Authorization: `Bearer ${token}`,
   //     }
   // })
   // .then(res => {
